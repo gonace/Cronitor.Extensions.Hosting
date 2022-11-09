@@ -1,0 +1,28 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build Cronitor.Extensions.Hosting/Cronitor.Extensions.Hosting.csproj --no-restore --configuration Release
+    - name: Publish
+      uses: laget-se/publish-nuget@v2.6.7
+      with:
+        PROJECT_FILE_PATH: Cronitor.Extensions.Hosting/Cronitor.Extensions.Hosting.csproj
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+        NUSPEC_FILE: Cronitor.Extensions.Hosting.nuspec
+        VERSION_STATIC: "1.1.${{github.run_number}}"
