@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 using System;
 
-namespace StatsdClient.Extensions.Hosting
+namespace Cronitor.Extensions.Hosting
 {
     public static class HostBuilderExtensions
     {
