@@ -18,7 +18,7 @@ namespace Cronitor.Extensions.Hosting
         {
             if (string.IsNullOrWhiteSpace(apiKey)) throw new ArgumentNullException(nameof(apiKey));
 
-            Cronitor.Cronitor.Configure(apiKey);
+            Cronitor.Configure(apiKey);
         }
     }
 }
