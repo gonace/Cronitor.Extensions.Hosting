@@ -5,7 +5,17 @@ namespace Cronitor.Extensions.Hosting
 {
     public static class HostBuilderExtensions
     {
-        public static IHostBuilder UseCronitor(this IHostBuilder builder, string apiKey)
+        [Obsolete("This method has no more usages and will be removed in a future version, please use ConfigureCronitor(string apiKey) instead.")]
+        public static IHostBuilder UseCronitor(this IHostBuilder builder, string apiKey) =>
+            builder.ConfigureCronitor(apiKey);
+
+        [Obsolete("This method has no more usages and will be removed in a future version, please use ConfigureCronitor(string apiKey) instead.")]
+        public static IHostBuilder UseCronitor(this IHostBuilder builder,
+            Func<HostBuilderContext, string> options) =>
+            builder.ConfigureCronitor(options);
+
+
+        public static IHostBuilder ConfigureCronitor(this IHostBuilder builder, string apiKey)
         {
             if (builder == null) throw new ArgumentNullException(nameof(builder));
 
@@ -14,7 +24,7 @@ namespace Cronitor.Extensions.Hosting
             return builder;
         }
 
-        public static IHostBuilder UseCronitor(this IHostBuilder builder, Func<HostBuilderContext, string> options)
+        public static IHostBuilder ConfigureCronitor(this IHostBuilder builder, Func<HostBuilderContext, string> options)
         {
             if (builder == null) throw new ArgumentNullException(nameof(builder));
 
