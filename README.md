@@ -8,8 +8,6 @@ await Host.CreateDefaultBuilder()
     .Build()
     .RunAsync();
 ```
-
-
 ```c#
 await Host.CreateDefaultBuilder()
     .UseCronitor((context) => context.Configuration.GetValue<string>("Cronitor:ApiKey"))
