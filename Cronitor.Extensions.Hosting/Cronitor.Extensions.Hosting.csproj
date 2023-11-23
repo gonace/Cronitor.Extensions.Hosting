@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFrameworks>net7.0;net6.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
     <NuspecProperties>version=$(Version)</NuspecProperties>
-    <AssemblyName>Cronitor.Extensions.Hosting</AssemblyName>
-    <RootNamespace>Cronitor.Extensions.Hosting</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Cronitor" Version="1.2.42" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
+    <PackageReference Include="Cronitor" Version="1.4.58" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
   </ItemGroup>
 
 </Project>
