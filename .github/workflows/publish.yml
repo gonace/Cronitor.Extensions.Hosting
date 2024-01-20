@@ -8,11 +8,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-dotnet@v3
+    - uses: actions/checkout@v4
+    - uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
     - run: dotnet restore
-    - run: dotnet build --configuration Release Cronitor.Extensions.Hosting/Cronitor.Extensions.Hosting.csproj
+    - run: dotnet build --configuration Release Cronitor.Extensions.Hosting/Cronitor.Extensions.Hosting.csproj -p:Version=${{vars.VERSION}}.${{github.run_number}}
     - run: dotnet pack --configuration Release Cronitor.Extensions.Hosting/Cronitor.Extensions.Hosting.csproj --no-build -p:Version=${{vars.VERSION}}.${{github.run_number}} -p:PackageVersion=${{vars.VERSION}}.${{github.run_number}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:NuspecFile=Cronitor.Extensions.Hosting.nuspec
     - run: dotnet nuget push Cronitor.Extensions.Hosting/bin/Release/Cronitor.Extensions.Hosting.${{vars.VERSION}}.${{github.run_number}}.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
